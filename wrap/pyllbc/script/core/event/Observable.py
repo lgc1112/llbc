@@ -123,10 +123,10 @@ class pyllbcObservable(object):
             wrapped_ob = ob
         else:
             wrapped_ob = WrappedOb(ob)
-        if wrapped_ob in self:
-            return
 
         if not self.__notifying:
+            if wrapped_ob in self:
+                return
             self.__observers.append(wrapped_ob)
         else:
             lazy_op = pyllbcObservable.LazyOp
